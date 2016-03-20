@@ -30,6 +30,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Shougo/neocomplete.vim'
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/syntastic'
+Plugin 'tomasr/molokai'
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype plugin on
@@ -47,7 +48,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 " see :h vundle for more details or wiki for FAQ
@@ -95,6 +96,7 @@ cnoremap <C-k> <t_ku>
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+colorscheme molokai
 " --------------------vim-go config ------------------- 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -109,8 +111,9 @@ let g:go_highlight_build_constraints = 1
 " saving and opening files. The following fixes this:
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+map go :GoDoc<CR>
 
-" -------------------NERDTree config-------------------
+" ------------------NERDTree config-------------------
 
 map ff :NERDTreeToggle<CR>
 
