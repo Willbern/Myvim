@@ -31,6 +31,8 @@ Plugin 'Shougo/neocomplete.vim'
 Plugin 'wincent/command-t'
 Plugin 'scrooloose/syntastic'
 Plugin 'tomasr/molokai'
+Plugin 'vim-scripts/EasyMotion'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype plugin on
@@ -71,6 +73,8 @@ set showcmd
 set showmode
 "显示行号：
 set number
+" 显示绝对行号
+set relativenumber
 " 括号配对情况,跳转并高亮一下匹配的括号
 set showmatch
 "设置文内智能搜索提示
@@ -93,10 +97,11 @@ map <C-l> <C-W>l
 " 命令行模式增强，ctrl - a到行首， -e 到行尾
 cnoremap <C-j> <t_kd>
 cnoremap <C-k> <t_ku>
-cnoremap <C-a> <Home>
-cnoremap <C-e> <End>
+cnoremap <C-a> <home>
+cnoremap <C-e> <end>
 
 colorscheme molokai
+let g:rehash256 = 1
 " --------------------vim-go config ------------------- 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -111,7 +116,21 @@ let g:go_highlight_build_constraints = 1
 " saving and opening files. The following fixes this:
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go'] }
+
+" mapping 
 map go :GoDoc<CR>
+
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au FileType go nmap <Leader>ds <Plug>(go-def-split)
+au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
+au FileType go nmap <Leader>dt <Plug>(go-def-tab)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
+au FileType go nmap <Leader>i <Plug>(go-info)
 
 " ------------------NERDTree config-------------------
 
@@ -139,3 +158,9 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" ------------------ EasyMotion ---------------------
+let g:EasyMotion_leader_key = '<Leader>'
+hi EasyMotionTarget ctermbg=none ctermfg=green
+hi EasyMotionShade  ctermbg=none ctermfg=blue
+
