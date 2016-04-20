@@ -15,7 +15,7 @@
 
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
+"execute pathogen#infect()
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -46,15 +46,6 @@ execute pathogen#infect()
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1 
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
 
 " ================ vim base config =============
 
@@ -87,6 +78,10 @@ set ignorecase
 " " 有一个或以上大写字母时仍大小写敏感
 set smartcase     
 " ignore case if search pattern is all lowercase, case-sensitive otherwise
+" set t_Co=-256 while the colorscheme is molokai
+" 
+set t_Co=256
+set clipboard=unnamed
 
 "Smart way to move between windows 分屏窗口移动
 map <C-j> <C-W>j
@@ -137,6 +132,9 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 map ff :NERDTreeToggle<CR>
 
 " -------------------neocomplete config ---------------- 
+"  build vim with lua and ruby
+"  ./configure --prefix=/usr --with-features=huge --enable-rubyinterp
+"  --enable-pythoninterp --enable-luainterp --with-lua-prefix=/usr/local
 let g:neocomplete#enable_at_startup = 1
 
 " -------------------command-t config ------------------
@@ -156,8 +154,10 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0 
 let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_w = 0
+let g:syntastic_enable_signs = 1
 
 " ------------------ EasyMotion ---------------------
 let g:EasyMotion_leader_key = '<Leader>'
